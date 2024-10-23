@@ -1,56 +1,90 @@
-// import { BiDownload } from "react-icons/bi"
-import { Component } from "react"
-import "./index.css"
+import React, { useState, useEffect, useRef } from 'react';
+import { FaLinkedinIn, FaGithub, FaEnvelope } from 'react-icons/fa';
+import { MdDownload } from 'react-icons/md';
+import Typed from 'typed.js'; // Import Typed.js
+import myImage from '../assets/images/kranthi.jpg';
+import './Home.css';
 
-class Home extends Component {
-  // const downloadClick = () => {
-  //   window.open(
-  //     "https://drive.google.com/file/d/1P5o-mCdKAVcrYY9wClQ8Zwjk8G7HH8j9/view?usp=share_link",
-  //     "_blank"
-  //   )
-  // }
-  state = { selectedName: "home" }
+function Home() {
+  const [isPopupOpen, setPopupOpen] = useState(false);
+  const typedTextRef = useRef(null); // Ref for Typed.js text
 
-  elementClicked = (name) => {
-    // const {selectedName} = this.state
-    this.setState({ selectedName: name })
-  }
+  useEffect(() => {
+    // Initialize Typed.js on component mount
+    const typed = new Typed(typedTextRef.current, {
+      strings: ["Frontend Developer", "Web Developer", "ReactJs Developer"],
+      typeSpeed: 100,
+      backSpeed: 100,
+      backDelay: 1000,
+      loop: true,
+    });
 
-  render(){
-    const { selectedName } = this.state
-  return(
-    <div className="home-container" id="home">
-      <h3 class="designation">Full Stack Developer</h3>
-      <h1 className="home">Hello, my name is <span className="home-name"></span>
-        <span className="span-name">Sreekanth Tirunagaram</span>
-      </h1>
-      <p className="home-job-role">An aspiring MERN stack developer. Core strengths include Coding, JavaScript, Python, ReactJs, etc. 
-      I'm a quick learner and I have very good problem-solving skills.</p>
-      <button className="projects-button">
-      <div>
-            <a
-              href="#myProjects"
-              className={
-                selectedName === "myProjects" ? "list-item active" : "list-item"
-              }
-              onClick={() => this.elementClicked("myProjects")}
-            >
-              Projects
+      return () => {
+        typed.destroy(); // Cleanup on unmount
+      };
+    }, []);
+
+  const handleConnectPopup = () => setPopupOpen(true);
+  const closePopup = () => setPopupOpen(false);
+
+  return (
+    <div className="home-container">
+      <div className="home-content">
+        <div className="align-left">
+          <h3>Hello, I am</h3>
+          <h4>Kranthi Kumar Kadinti</h4>
+          <h4>
+            I'm a <span className="text-content3" ref={typedTextRef}></span>
+          </h4>
+          <p className="kkk2">
+            Building bridges between front end and backend, transforming ideas into responsive reality.
+          </p>
+
+          <div className="social-icons">
+            <a href="https://www.linkedin.com/in/kranthi-kumar-81453113a/" target="_blank" rel="noopener noreferrer" className="social-icons1">
+              <FaLinkedinIn />
             </a>
-            <div
-              className={
-                selectedName === "myProjects" ? "under-line" : "no-display"
-              }
-            ></div>
+            <a href="https://github.com/klmamatha" target="_blank" rel="noopener noreferrer" className="social-icons1">
+              <FaGithub />
+            </a>
+            <a href="mailto:kranthikuma17@gmail.com" className="social-icons1">
+              <FaEnvelope />
+            </a>
+            </div>
+
+            <button className="resume-btn" onClick={() => window.open('/kranthi resume.pdf')}>
+              Download my Resume <MdDownload />
+            </button>
           </div>
-      </button>
-        {/* <button className="download-btn" onClick={downloadClick}>
-          Download CV
-          <BiDownload className="download-icon" size="17" />
-        </button> */}
-    </div>
-  )
-      }
+          <div className="align-right">
+            <div className="floating-image">
+              <img src={myImage} alt="Kranthi Kumar Kadinti" />
+            </div>
+            <div className="topmate-profile">
+              <button className="topmate-button" onClick={handleConnectPopup}>
+                Let's Connect
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {isPopupOpen && (
+          <div className="popup-overlay" onClick={closePopup}>
+            <div className="popup-content" onClick={(e) => e.stopPropagation()}>
+              <button className="close-button" onClick={closePopup}>
+                X
+              </button>
+              <iframe
+                src="https://topmate.io/embed/profile/kadinti_kranthi?theme=D5534D"
+                title="Topmate Profile"
+                className="popup-iframe"
+                frameBorder="0"
+              ></iframe>
+            </div>
+          </div>
+        )}
+      </div>
+    );
 }
 
-export default Home
+export default Home;
