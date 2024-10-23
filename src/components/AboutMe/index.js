@@ -1,41 +1,16 @@
-import "./index.css"
+import React from 'react';
+import './About.css'; // Import the custom styles
 
-const AboutMe = () => (
-  <>
-    <div className="aboutme-container" id="aboutMe">
-    <div>
-      <h1 className="home-name left-padding">
-        About
-        <span className="span-name"> Me</span>
-      </h1>
-      <div className="">
-        <div className="aboutme-content-container">
-          <p className="aboutme-content">
-            I'm an aspiring Full Stack Developer.
-          </p>
-          <p className="aboutme-content">I have intrest in Programming.</p>
-          <p className="aboutme-content">
-            I took extensive training on Full Stack Development Course for
-            more than 8 months at the institute 'NxtWave Disruptive Technologies.
-          </p>
-          <p className="aboutme-content">
-            I have developed projects in Frontend using HTML, CSS, <br />
-            Bootstrap, Javascript, React.js and Backend projects using Node.js
-            (REST APIs)
-            included SQLite database as well.
-          </p>
-          <p className="aboutme-content">
-            I have hosted my projects in third-party hosting services.
-          </p>
-          <p className="aboutme-content">
-            I have experience with using the Figma tool for web development
-            purposes.
-          </p>
-        </div>
-        </div>
-      </div>
-    </div>
-  </>
-)
+function About() {
+  return (
+    <section className="about-section">
+      <h2>About Me</h2>
+      <p>
+        I am Kranthi Kumar Kadinti,I’m a Full Stack Developer with a strong foundation in HTML, CSS, JavaScript, Bootstrap, SQL, MongoDB, Node.js, Express.js, ReactJS, and Figma. I’m passionate about using these skills to develop innovative web applications that are user-friendly. I’m always eager to learn more about web development and marketing. I enjoy the challenge of coding and solving real-world problems. Currently, I’m
+        looking for opportunities to join a team that values innovation and shares my enthusiasm for technology.
+      </p>
+    </section>
+  );
+}
 
-export default AboutMe
+export default About;
